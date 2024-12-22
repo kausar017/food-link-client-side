@@ -7,9 +7,9 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 
-    // const navigat = useNavigate()
-    // const location = useLocation()
-    // const from = location?.state?.pathname || '/';
+    const navigat = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.pathname || '/';
 
     const { handalLogin, handaleGoogle, handaleGithub } = useContext(AuthContext)
 
