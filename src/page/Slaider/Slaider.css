@@ -1,0 +1,14 @@
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+
+
+.mySwiper .swiper-pagination-bullet {
+    background-color: #007bff;
+    opacity: 0.8;
+}
+
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+    color: #ffffff; 
+}
