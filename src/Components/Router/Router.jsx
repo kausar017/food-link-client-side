@@ -10,6 +10,8 @@ import ManageMyFoods from "../../page/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../../page/MyFoodRequest/MyFoodRequest";
 import Login from "../../page/Login/Login";
 import Signup from "../../page/Signup/Signup";
+import PrivetRout from "../../page/PrivetRout/PrivetRout";
+import Loader from "../../page/Loader/Loader";
 
 const Router = createBrowserRouter([
     {
@@ -27,15 +29,21 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/addfood',
-                element: <AddFood></AddFood>
+                element: <PrivetRout>
+                    <AddFood></AddFood>
+                </PrivetRout>
             },
             {
                 path: '/managmyfood',
-                element: <ManageMyFoods></ManageMyFoods>
+                element: <PrivetRout>
+                    <ManageMyFoods></ManageMyFoods>
+                </PrivetRout>
             },
             {
                 path: '/foodrequest',
-                element: <MyFoodRequest></MyFoodRequest>
+                element: <PrivetRout>
+                    <MyFoodRequest></MyFoodRequest>
+                </PrivetRout>
             },
             {
                 path: '/login',
@@ -44,6 +52,10 @@ const Router = createBrowserRouter([
             {
                 path: '/singup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/loading',
+                element: <Loader></Loader>
             }
         ]
     },

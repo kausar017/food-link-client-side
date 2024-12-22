@@ -50,7 +50,7 @@ const AddFood = () => {
     };
 
     return (
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="bg-gray-100 flex items-center justify-center pt-[120px]">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
                 <h1 className="text-2xl font-bold mb-6 text-center">Add Food</h1>
                 <form onSubmit={handleSubmit}>

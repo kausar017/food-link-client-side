@@ -16,6 +16,7 @@ const Navbar = () => {
         handalLogout()
     }
 
+    
     const link = <>
         <div className="sm:flex md:flex-col lg:flex-row gap-3">
             <NavLink to={'/'} rel="noopener noreferrer" className="flex items-center justify-center px-4 py-2 -mb-1 dark:border-">Home</NavLink>
