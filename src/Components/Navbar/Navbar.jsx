@@ -10,7 +10,6 @@ const Navbar = () => {
 
     const { user, handalLogout } = useContext(AuthContext)
 
-    console.log(user?.displayName);
 
     const handaleLogout = () => {
         handalLogout()

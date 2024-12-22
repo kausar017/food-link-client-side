@@ -12,6 +12,7 @@ import Login from "../../page/Login/Login";
 import Signup from "../../page/Signup/Signup";
 import PrivetRout from "../../page/PrivetRout/PrivetRout";
 import Loader from "../../page/Loader/Loader";
+import Detals from "../../page/Detals/Detals";
 
 const Router = createBrowserRouter([
     {
@@ -54,8 +55,8 @@ const Router = createBrowserRouter([
                 element: <Signup></Signup>
             },
             {
-                path: '/loading',
-                element: <Loader></Loader>
+                path: '/detals/:id',
+                element: <Detals></Detals>
             }
         ]
     },

@@ -2,8 +2,15 @@
 import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provaider/AuthProvaider';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AddFood = () => {
+
+    const navigat = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.pathname || '/available';
+
     const [formData, setFormData] = useState({
         foodName: '',
         foodImage: '',
@@ -24,7 +31,7 @@ const AddFood = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const foodData = {
             ...formData,
@@ -34,9 +41,21 @@ const AddFood = () => {
             donatorEmail: (user?.email),
         };
 
+        try {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/food`, foodData)
+            console.log(data);
+            Swal.fire('Food added successfully!');
+            navigat(from)
+        } catch (error) {
+            Swal.error(error.massage);
+
+        }
+
+
+
         // Mock saving data to the collection
         console.log('Food Data:', foodData);
-        Swal.fire('Food added successfully!');
+
 
         // Reset form after submission
         setFormData({
