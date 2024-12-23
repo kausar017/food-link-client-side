@@ -13,7 +13,8 @@ const Detals = () => {
     console.log(detals);
     const params = useParams()
 
-    const { foodName, foodImage,foodQuantity,pickupLocation,expiredDateTime  } = detals || {}
+    const { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, additionalNotes, foodStatus, _id: foodId, donatorImage, donatorName, donatorEmail } = detals || {}
+    const currentDate = new Date().toISOString();
 
 
     // {
@@ -40,109 +41,109 @@ const Detals = () => {
     }, [])
 
     return (
-        // <div className="py-[120px]">
-        //     <div className="modal">
-        //         <div className="modal-box">
-        //             <h3 className="text-lg font-bold">Request Food</h3>
-        //             <form className="space-y-4">
-        //                 <div className="form-control">
-        //                     <label className="label">Food Name</label>
-        //                     <input
-        //                         type="text"
-        //                         value={foodName}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Food Image</label>
-        //                     <img
-        //                         src={foodImage}
-        //                         alt={foodName}
-        //                         className="rounded-lg w-full h-40 object-cover"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Food ID</label>
-        //                     <input
-        //                         type="text"
-        //                         value={foodId}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Donator Email</label>
-        //                     <input
-        //                         type="text"
-        //                         value={donatorEmail}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Donator Name</label>
-        //                     <input
-        //                         type="text"
-        //                         value={donatorName}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">User Email</label>
-        //                     <input
-        //                         type="text"
-        //                         value={user?.email}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Request Date</label>
-        //                     <input
-        //                         type="text"
-        //                         value={new Date(currentDate).toLocaleString()}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Pickup Location</label>
-        //                     <input
-        //                         type="text"
-        //                         value={pickupLocation}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Expire Date</label>
-        //                     <input
-        //                         type="text"
-        //                         value={new Date(expiredDateTime).toLocaleString()}
-        //                         readOnly
-        //                         className="input input-bordered"
-        //                     />
-        //                 </div>
-        //                 <div className="form-control">
-        //                     <label className="label">Additional Notes</label>
-        //                     <textarea
-        //                         name="additionalNotes"
-        //                         className="textarea textarea-bordered"
-        //                         defaultValue={additionalNotes || ""}
-        //                     ></textarea>
-        //                 </div>
-        //                 <div className="modal-action">
-        //                     <button type="submit" className="btn btn-primary">
-        //                         Request
-        //                     </button>
-        //                 </div>
-        //             </form>
-        //         </div>
-        //     </div>
-        // </div>
-        <div></div>
+        <div className="py-[120px]">
+            <div className="modal">
+                <div className="modal-box">
+                    <h3 className="text-lg font-bold">Request Food</h3>
+                    <form className="space-y-4">
+                        <div className="form-control">
+                            <label className="label">Food Name</label>
+                            <input
+                                type="text"
+                                value={foodName}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Food Image</label>
+                            <img
+                                src={foodImage}
+                                alt={foodName}
+                                className="rounded-lg w-full h-40 object-cover"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Food ID</label>
+                            <input
+                                type="text"
+                                value={foodId}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Donator Email</label>
+                            <input
+                                type="text"
+                                value={donatorEmail}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Donator Name</label>
+                            <input
+                                type="text"
+                                value={donatorName}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">User Email</label>
+                            <input
+                                type="text"
+                                value={user?.email}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Request Date</label>
+                            <input
+                                type="text"
+                                value={new Date(currentDate).toLocaleString()}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Pickup Location</label>
+                            <input
+                                type="text"
+                                value={pickupLocation}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Expire Date</label>
+                            <input
+                                type="text"
+                                value={new Date(expiredDateTime).toLocaleString()}
+                                readOnly
+                                className="input input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">Additional Notes</label>
+                            <textarea
+                                name="additionalNotes"
+                                className="textarea textarea-bordered"
+                                defaultValue={additionalNotes || ""}
+                            ></textarea>
+                        </div>
+                        <div className="modal-action">
+                            <button type="submit" className="btn btn-primary">
+                                Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        // <div></div>
     );
 };
 
