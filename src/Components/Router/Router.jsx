@@ -11,7 +11,6 @@ import MyFoodRequest from "../../page/MyFoodRequest/MyFoodRequest";
 import Login from "../../page/Login/Login";
 import Signup from "../../page/Signup/Signup";
 import PrivetRout from "../../page/PrivetRout/PrivetRout";
-import Loader from "../../page/Loader/Loader";
 import Detals from "../../page/Detals/Detals";
 
 const Router = createBrowserRouter([
@@ -56,7 +55,9 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/detals/:id',
-                element: <Detals></Detals>
+                element: <PrivetRout>
+                   <Detals></Detals>
+                </PrivetRout>
             }
         ]
     },
