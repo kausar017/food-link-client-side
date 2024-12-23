@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const AvailableFoodsCard = ({ food }) => {
 
     // console.log(food);
-    const { foodImage, foodQuantity, foodName,  expiredDateTime, additionalNotes, _id } = food || {}
+    const { foodImage, foodQuantity, foodName, expiredDateTime, additionalNotes, _id, foodStatus } = food || {}
 
 
     return (
@@ -15,11 +15,14 @@ const AvailableFoodsCard = ({ food }) => {
                 <img src={foodImage} alt={foodImage} className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
                 <div className="flex flex-col justify-between p-6 space-y-8">
                     <div className="space-y-2">
-                        <h2 className="text-3xl font-semibold tracking-wide">{foodName}</h2>
+                        <div className='flex  items-center justify-between'>
+                            <h2 className="text-3xl font-semibold tracking-wide">{foodName}</h2>
+                            <p className={``}>{foodStatus}</p>
+                        </div>
                         <p title={additionalNotes} className="text-gray-100 dark:text-gray-800">{additionalNotes.slice(0, 70)}...</p>
                         <p>Food Quantity: {foodQuantity}</p>
                         <p>Expire Date: {format(new Date(expiredDateTime), "P")} </p>
-                        
+
                     </div>
                     <Link to={`/detals/${_id}`} type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md border-2 hover:bg-rose-500/30 dark:text-gray-50">View Details</Link>
                 </div>

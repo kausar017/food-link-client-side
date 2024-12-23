@@ -48,7 +48,6 @@ const AddFood = () => {
             navigat(from)
         } catch (error) {
             Swal.error(error.massage);
-
         }
 
 

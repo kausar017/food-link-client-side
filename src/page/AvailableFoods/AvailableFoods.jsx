@@ -20,7 +20,8 @@ const AvailableFoods = () => {
     useEffect(() => {
         const fatchAllData = async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
-            setFoods(data)
+            const filtarData = data.filter(d => d.foodStatus === 'available')
+            setFoods(filtarData)
         }
         fatchAllData()
     }, [search, sort])
