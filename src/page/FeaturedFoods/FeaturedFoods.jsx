@@ -20,8 +20,8 @@ const FeaturedFoods = () => {
     useEffect(() => {
         const fatchAllData = async e => {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured`)
-            const filtarData = data.filter(d => d.foodStatus === 'available')
-            setFeaured(filtarData)
+            // const filtarData = data.filter(d => d.foodStatus === 'available')
+            setFeaured(data)
         }
         fatchAllData()
     }, [])
@@ -37,9 +37,9 @@ const FeaturedFoods = () => {
             {
                 feaured.length ?
 
-                    <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 p-2 container mx-auto py-10">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-2 container mx-auto py-10">
                         {
-                            feaured?.slice(0, 6).map(feaur => <div key={feaur._id}>
+                            feaured?.map(feaur => <div key={feaur._id}>
 
                                 < div className="rounded-md shadow-md bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800 transition hover:scale-105">
                                     <img src={feaur?.foodImage} alt={feaur?.foodImage} className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />

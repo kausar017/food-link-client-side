@@ -51,17 +51,7 @@ const AddFood = () => {
             return;
         }
 
-        // Additional Image URL validation (basic check)
-        const imageURLPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp))$/i;
-        if (!imageURLPattern.test(formData.foodImage)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Invalid Image URL',
-                text: 'Please enter a valid image URL.',
-            });
-            return;
-        }
-
+    
         const foodData = {
             ...formData,
             foodStatus,

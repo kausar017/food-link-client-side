@@ -13,10 +13,6 @@ const AvailableFoods = () => {
     console.log(search);
 
 
-    // console.log(foods);
-
-
-
     useEffect(() => {
         const fatchAllData = async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
@@ -61,22 +57,21 @@ const AvailableFoods = () => {
                 </div>
             </div>
 
-            <div className="">
-                {
-                    foods.length ?
-                        <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-5 items-center m-3">
-                            {
-                                foods?.map(food => <AvailableFoodsCard key={food._id} food={food}></AvailableFoodsCard>)
-                            }
-                        </div>
-                        :
-                        <div className="flex  flex-col justify-center items-center min-h-96">
-                            <h1 className="text-4xl font-bold ">Data Not Found</h1>
-                            <p><LuDatabase size={120}></LuDatabase> </p>
-                        </div>
+            {
+                foods.length ?
 
-                }
-            </div>
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-5 items-center m-3">
+                        {
+                            foods?.map(food => <AvailableFoodsCard key={food._id} food={food}></AvailableFoodsCard>)
+                        }
+                    </div>
+                    :
+
+                    <div className="flex  flex-col justify-center items-center min-h-96">
+                        <h1 className="text-4xl font-bold ">Data Not Found</h1>
+                        <p><LuDatabase size={120}></LuDatabase> </p>
+                    </div>
+            }
         </div>
 
     );

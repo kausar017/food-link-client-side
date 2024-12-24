@@ -1,31 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const MyFoodUpdate = () => {
+
+    const navigat = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.pathname || '/managmyfood';
+
     const { user } = useContext(AuthContext);
     const params = useParams();
     console.log(params.id);
 
     const [foodData, setFoodData] = useState([]);
     console.log(foodData);
-
-    // useEffect(() => {
-    //     const fetchRequests = async () => {
-    //         try {
-    //             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`);
-    //             setFoodData(data);
-    //             console.log(data);
-
-    //         } catch (error) {
-    //             console.error("Error fetching requests:", error);
-    //         }
-    //     };
-    //     fetchRequests();
-    // }, [user?.email, params?.id]);
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`)
@@ -42,21 +33,20 @@ const MyFoodUpdate = () => {
         const foodName = form.foodName.value;
         const foodImage = form.foodImage.value;
         const foodId = form.foodId.value;
-        const donatorEmail = form.donatorEmail.value;
         const donatorName = form.donatorName.value;
-        const userEmail = form.userEmail.value;
         const currentDate = form.currentDate.value;
         const pickupLocation = form.pickupLocation.value;
         const expireDate = form.expireDate.value;
         const additionalNotes = form.additionalNotes.value;
 
-        const formData = { foodName, foodImage, foodId, donatorEmail, donatorName, userEmail, currentDate, pickupLocation, expireDate, additionalNotes }
+        const formData = { foodName, foodImage, foodId, donatorEmail, email, donatorName, currentDate, pickupLocation, expireDate, additionalNotes }
         console.log(formData);
 
         try {
             axios.put(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`, formData)
 
             Swal.fire('success', 'Food Data Succesfully Updated')
+            navigat(from)
         } catch (error) {
             Swal.fire('Data NOt Updatet')
         }
@@ -114,6 +104,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="email"
                         name="donatorEmail"
+                        readOnly
                         defaultValue={donatorEmail}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
@@ -131,7 +122,8 @@ const MyFoodUpdate = () => {
                     <label className="block mb-1 ml-1">User Email</label>
                     <input
                         type="text"
-                        name="userEmail"
+                        name="email"
+                        readOnly
                         defaultValue={email}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
@@ -174,8 +166,7 @@ const MyFoodUpdate = () => {
                     />
                 </div>
                 <div className="pt-6 flex justify-end space-x-4">
-                    <button className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Update</button>
+                    <button className="px-4 py-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600">Update</button>
                 </div>
             </form>
         </div>
