@@ -14,6 +14,8 @@ const Detals = () => {
 
 
     const [detals, setDetals] = useState({});
+    console.log(detals);
+    
     const params = useParams()
     const { user } = useContext(AuthContext);
 
@@ -37,7 +39,7 @@ const Detals = () => {
 
     // show modal usestate
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [notes, setNots] = useState('');
+    const [notes, setNots] = useState(additionalNotes);
 
 
 
@@ -153,8 +155,7 @@ const Detals = () => {
 
                     </div>
                 </div>
-            )
-            }
+            )}
         </div >
     );
 

@@ -17,7 +17,11 @@ const AvailableFoodsCard = ({ food }) => {
                     <div className="space-y-2">
                         <div className='flex  items-center justify-between'>
                             <h2 className="text-3xl font-semibold tracking-wide">{foodName}</h2>
-                            <p className={``}>{foodStatus}</p>
+                            <p
+                                className={`
+                                ${foodStatus === "requested" ? "bg-cyan-600/60 px-2 rounded-full" : ""}
+                                ${foodStatus === "available" ? "bg-green-800 px-2 rounded-full" : ""}
+                                `}>{foodStatus}</p>
                         </div>
                         <p title={additionalNotes} className="text-gray-100 dark:text-gray-800">{additionalNotes.slice(0, 70)}...</p>
                         <p>Food Quantity: {foodQuantity}</p>

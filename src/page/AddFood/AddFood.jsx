@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provaider/AuthProvaider';
@@ -24,8 +23,7 @@ const AddFood = () => {
 
     const { user } = useContext(AuthContext)
 
-    // console.log(user);
-
+    // handle form input change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -33,6 +31,37 @@ const AddFood = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validation checks
+        if (!formData.foodName || !formData.foodImage || !formData.foodQuantity || !formData.pickupLocation || !formData.expiredDateTime) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill in all required fields!',
+            });
+            return;
+        }
+
+        if (formData.foodQuantity <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Quantity',
+                text: 'Food quantity must be greater than 0.',
+            });
+            return;
+        }
+
+        // Additional Image URL validation (basic check)
+        const imageURLPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp))$/i;
+        if (!imageURLPattern.test(formData.foodImage)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Image URL',
+                text: 'Please enter a valid image URL.',
+            });
+            return;
+        }
+
         const foodData = {
             ...formData,
             foodStatus,
@@ -47,14 +76,12 @@ const AddFood = () => {
             Swal.fire('Food added successfully!');
             navigat(from)
         } catch (error) {
-            Swal.error(error.massage);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'There was an error adding the food.',
+            });
         }
-
-
-
-        // Mock saving data to the collection
-        console.log('Food Data:', foodData);
-
 
         // Reset form after submission
         setFormData({
