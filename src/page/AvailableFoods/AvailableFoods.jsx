@@ -13,6 +13,7 @@ const AvailableFoods = () => {
 
     console.log(search);
 
+    const [isThreeColumn, setIsThreeColumn] = useState(true);
 
     useEffect(() => {
         const fatchAllData = async () => {
@@ -27,9 +28,14 @@ const AvailableFoods = () => {
         setSort()
     }
 
+    const toggleLayout = () => {
+        setIsThreeColumn(!isThreeColumn);
+    };
+
+
     return (
 
-        <div
+        <div className="min-h-screen"
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
@@ -45,7 +51,10 @@ const AvailableFoods = () => {
                     <div className="w-80 mx-auto h-1 bg-white"></div>
 
                 </div>
-                <div className="flex max-sm:flex-col justify-center lg:justify-around md:justify-around items-center space-y-3">
+                <div className="flex lg:flex-row md:flex-col sm:flex-col max-sm:flex-col justify-center lg:justify-around md:justify-around items-center space-y-3">
+                    <div>
+                        <button onClick={toggleLayout} className="text-white border-2 p-2 rounded-xl lg:block max-sm:hidden sm:hidden"> Change Layout</button>
+                    </div>
                     <div>
                         <h1 className="text-2xl text-white">Available Foots: {foods.length}</h1>
                     </div>
@@ -71,8 +80,9 @@ const AvailableFoods = () => {
 
                 {
                     foods.length ?
-
-                        <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-5 items-center m-3">
+                        // className = {`grid gap-4 m-3 ${isThreeColumn ? "grid-cols-3" : "grid-cols-2"}`}
+                        // grid lg:grid-cols-3 md:grid-cols-2  gap-5 items-center m-3
+                        <div className={`grid lg:grid-cols-3 gap-5 md:grid-cols-2 items-center m-3 ${isThreeColumn ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
                             {
                                 foods?.map(food => <AvailableFoodsCard key={food._id} food={food}></AvailableFoodsCard>)
                             }
@@ -80,8 +90,8 @@ const AvailableFoods = () => {
                         :
 
                         <div className="flex  flex-col justify-center items-center min-h-96">
-                            <h1 className="text-4xl font-bold ">Data Not Found</h1>
-                            <p><LuDatabase size={120}></LuDatabase> </p>
+                            <h1 className="text-4xl font-bold text-white">Data Not Found</h1>
+                            <p><LuDatabase size={120} color="white"></LuDatabase> </p>
                         </div>
                 }
             </div>

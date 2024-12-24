@@ -41,7 +41,7 @@ const Navbar = () => {
 
                 }}
             >
-                <div className="container flex justify-between h-10 mx-auto">
+                <div className="container flex justify-between h-10 mx-auto px-2">
                     <Link to={'/'} rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex gap-2 items-center p-2 ">
                         <img className="w-14" src={logo} alt="" />
                         <h1 className="text-3xl font-bold">Food Link</h1>

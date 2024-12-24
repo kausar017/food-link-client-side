@@ -141,8 +141,8 @@ const ManageMyFoods = () => {
                     :
 
                     <div className="flex  flex-col justify-center items-center min-h-96">
-                        <h1 className="text-4xl font-bold ">Data Not Found</h1>
-                        <p><LuDatabase size={120}></LuDatabase> </p>
+                        <h1 className="text-4xl font-bold text-white">Data Not Found</h1>
+                        <p><LuDatabase size={120} color="white"></LuDatabase> </p>
                     </div>
             }
 
