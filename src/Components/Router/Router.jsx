@@ -12,6 +12,7 @@ import Login from "../../page/Login/Login";
 import Signup from "../../page/Signup/Signup";
 import PrivetRout from "../../page/PrivetRout/PrivetRout";
 import Detals from "../../page/Detals/Detals";
+import MyFoodUpdate from "../../page/ManageMyFoods/MyFoodUpdate";
 
 const Router = createBrowserRouter([
     {
@@ -56,7 +57,13 @@ const Router = createBrowserRouter([
             {
                 path: '/detals/:id',
                 element: <PrivetRout>
-                   <Detals></Detals>
+                    <Detals></Detals>
+                </PrivetRout>
+            },
+            {
+                path: '/foodUpdate/:id',
+                element: <PrivetRout>
+                    <MyFoodUpdate></MyFoodUpdate>
                 </PrivetRout>
             }
         ]

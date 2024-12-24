@@ -1,8 +1,9 @@
 import axios from "axios";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LuDatabase } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provaider/AuthProvaider";
 
 const FeaturedFoods = () => {
 
@@ -10,11 +11,17 @@ const FeaturedFoods = () => {
 
     console.log(feaured);
 
+    // const []
+    const { user } = useContext(AuthContext)
+    if (!user) {
+
+    }
 
     useEffect(() => {
         const fatchAllData = async e => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData`)
-            setFeaured(data)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured`)
+            const filtarData = data.filter(d => d.foodStatus === 'available')
+            setFeaured(filtarData)
         }
         fatchAllData()
     }, [])
@@ -66,6 +73,9 @@ const FeaturedFoods = () => {
                     </div>
             }
 
+            <div className="flex justify-center items-center pb-5">
+                <Link to={'/available'} className="border-2 border-cyan-200 p-2 rounded-md hover:bg-rose-300">Show All</Link>
+            </div>
 
 
         </>

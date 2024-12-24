@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { MdDeleteOutline, MdOutlineSystemUpdateAlt } from "react-icons/md";
 import Swal from "sweetalert2";
 import MyFoodUpdate from "./MyFoodUpdate";
+import { Link } from "react-router-dom";
 
 
 const ManageMyFoods = () => {
@@ -12,8 +13,6 @@ const ManageMyFoods = () => {
 
     const { user } = useContext(AuthContext);
     // console.log(user?.email);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [requests, setRequests] = useState([])
 
@@ -62,7 +61,7 @@ const ManageMyFoods = () => {
     }
 
     console.log(requests);
-    
+
 
     return (
         <div className="py-[120px]">
@@ -108,7 +107,7 @@ const ManageMyFoods = () => {
                                         <p>{format(new Date(request?.formattedDate), "P")}</p>
                                     </td>
                                     <td className="flex gap-5 items-center justify-around px-3">
-                                        <button onClick={() => setIsModalOpen(true)}><MdOutlineSystemUpdateAlt size={20} color="white"></MdOutlineSystemUpdateAlt> </button>
+                                        <Link to={`/foodUpdate/${request._id}`} ><MdOutlineSystemUpdateAlt size={20} color="white"></MdOutlineSystemUpdateAlt> </Link>
                                         <button onClick={() => handaleDelete(request._id)}><MdDeleteOutline size={25} color="red"></MdDeleteOutline></button>
                                     </td>
 
@@ -179,7 +178,6 @@ const ManageMyFoods = () => {
                     </div>
                 </div>
             )} */}
-            <MyFoodUpdate requests={requests} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}></MyFoodUpdate>
         </div>
     );
 };
