@@ -64,13 +64,19 @@ const Login = () => {
             })
     };
 
-    const handaleGoogleLogin = () => {
-        handaleGoogle()
-            .then(data => {
-                navigat(from);
-                Swal.fire('google Login Succesfully', data)
+    const handaleGoogleLogin = async () => {
 
-            })
+
+        try {
+            await handaleGoogle()
+            navigat(from);
+            Swal.fire('Google Login Succesfully')
+        }
+        catch (error) {
+            Swal.fire('Google login Not Successfuly')
+        }
+
+
     }
     const handaleGIthubLogin = () => {
         handaleGithub()

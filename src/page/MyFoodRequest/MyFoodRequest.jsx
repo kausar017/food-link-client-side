@@ -19,7 +19,7 @@ const MyFoodRequest = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest?email=${user?.email}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest?email=${user?.email}`, { withCredentials: true });
                 setRequests(data);
             } catch (error) {
                 console.error("Error fetching requests:", error);
@@ -106,7 +106,7 @@ const MyFoodRequest = () => {
 
                     :
 
-                     <div className="flex  flex-col justify-center items-center min-h-96">
+                    <div className="flex  flex-col justify-center items-center min-h-96">
                         <h1 className="text-4xl font-bold text-white">Data Not Found</h1>
                         <p><LuDatabase size={120} color="white"></LuDatabase> </p>
                     </div>

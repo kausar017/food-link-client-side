@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
 import axios from "axios";
 import Swal from "sweetalert2";
+import bg from '../../assets/bg/Sprinkle.svg'
 
 const MyFoodUpdate = () => {
 
@@ -69,8 +70,22 @@ const MyFoodUpdate = () => {
     } = foodData;
 
     return (
-        <div className="py-[150px]">
-            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-xl mx-auto space-y-3 rounded-md dark:bg-gray-50 border-2 p-5 bg-white shadow-xl">
+        <div className="py-[150px]"
+            style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                // height: "100vh",
+                width: "100%",
+
+            }}
+
+        >
+
+            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-2xl h-[800px] overflow-y-scroll mx-auto space-y-3 rounded-md dark:bg-gray-50 border-2 p-5 bg-white shadow-xl">
+                <div className="text-2xl font-bold text-center">
+                    <h1>Update Food</h1>
+                </div>
                 <div>
                     <label className="block mb-1 ml-1">Food Name</label>
                     <input

@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Components/Firebase/Firebase.init";
+import axios from "axios";
 
 
 export const AuthContext = createContext()
@@ -46,7 +47,7 @@ const AuthProvaider = ({ children }) => {
         }
     }
 
-   
+
 
 
     const authInfo = {
@@ -64,13 +65,20 @@ const AuthProvaider = ({ children }) => {
 
     }
     useEffect(() => {
-        const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubcribe = onAuthStateChanged(auth, async (currentUser) => {
             console.log(currentUser);
-            if (currentUser) {
+            if (currentUser?.email) {
                 setUser(currentUser)
+                // genaret token
+                const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, { email: currentUser?.email }, { withCredentials: true })
+                console.log(data)
+
+
             }
             else {
                 setUser(null)
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true })
+                console.log(data)
             }
             setLooder(false)
             return () => {

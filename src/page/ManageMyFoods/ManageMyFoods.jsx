@@ -22,7 +22,7 @@ const ManageMyFoods = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest?email=${user?.email}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest?email=${user?.email}`, { withCredentials: true });
                 setRequests(data);
             } catch (error) {
                 console.error("Error fetching requests:", error);
@@ -66,14 +66,14 @@ const ManageMyFoods = () => {
 
     return (
         <div className="py-[120px] min-h-screen"
-        style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            // height: "100vh",
-            width: "100%",
+            style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                // height: "100vh",
+                width: "100%",
 
-        }}
+            }}
         >
 
             <div className="text-center py-8 w-[50%] mx-auto">

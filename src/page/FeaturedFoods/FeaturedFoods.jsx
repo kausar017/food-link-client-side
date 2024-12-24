@@ -10,7 +10,7 @@ const FeaturedFoods = () => {
 
     const [feaured, setFeaured] = useState([])
 
-    console.log(feaured);
+    // console.log(feaured);
 
     // const []
     const { user } = useContext(AuthContext)
