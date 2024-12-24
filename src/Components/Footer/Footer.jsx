@@ -1,8 +1,19 @@
 import logo from '../../assets/Logo/foode-logo.png'
+import bg from '../../assets/bg/Sprinkle.svg'
+
 const Footer = () => {
     return (
-        <div>
-            <footer className="px-4 divide-y bg-gray-800 dark:bg-gray-100 text-gray-100 dark:text-gray-800">
+        <div
+            style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                // height: "100vh",
+                width: "100%",
+
+            }}
+        >
+            <footer className="px-4 divide-y bg-gray-800/30 dark:bg-gray-100 text-white dark:text-gray-800 border rounded-md backdrop-blur-md">
                 <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
                     <div className="lg:w-1/3">
                         <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
@@ -77,7 +88,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="py-6 text-sm text-center text-gray-400 dark:text-gray-600">© 1968 Company Co. All rights reserved.</div>
+                <div className="py-6 text-sm text-center text-gray-400 dark:text-gray-600">© 2024 copy write md:kausar  mia.</div>
             </footer>
         </div>
     );

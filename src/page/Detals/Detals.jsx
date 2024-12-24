@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
+import bg from '../../assets/bg/Sprinkle.svg'
 
 const Detals = () => {
 
@@ -15,7 +16,7 @@ const Detals = () => {
 
     const [detals, setDetals] = useState({});
     console.log(detals);
-    
+
     const params = useParams()
     const { user } = useContext(AuthContext);
 
@@ -26,7 +27,6 @@ const Detals = () => {
     // current date
     const date = new Date();
     const currentDate = format(date, 'yyyy-MM-dd');
-    // console.log('Current Date:', formattedDate);
 
     // detals data fatching
     useEffect(() => {
@@ -72,28 +72,39 @@ const Detals = () => {
 
 
     return (
-        <div className="py-[120px] container mx-auto">
-            <div className="rounded-md max-w-[800px] mx-auto bg-white shadow-xl p-6 w-full">
-                <img src={foodImage} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
-                <div className="flex flex-col justify-between p-6 space-y-8">
-                    <div className="space-y-2">
-                        <h2 className="text-3xl font-semibold tracking-wide">Food Name: {foodName}</h2>
-                        <p className="">Food Id: {foodId}</p>
-                        <p className="">Donator Email: {donatorEmail}</p>
-                        <p className="">Donator Name: {donatorName}</p>
-                        <p className="">User Email: {email}</p>
-                        <p className="">Request Date: {currentDate}</p>
-                        <p className="">Pickup Location: {pickupLocation}</p>
-                        <p className="">Food Quantity: {foodQuantity}</p>
-                        <p className="">Expired Date: {expiredDateTime ? format(new Date(expiredDateTime), "yyyy-MM-dd") : ""}</p>
-                        <p className="">Additional Notes: {additionalNotes}</p>
+        <div className="py-[120px]"
+            style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                // height: "100vh",
+                width: "100%",
+
+            }}
+        >
+            <div>
+                <div className="rounded-md max-w-[800px] mx-auto bg-white shadow-xl p-6 w-full ">
+                    <img src={foodImage} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
+                    <div className="flex flex-col justify-between p-6 space-y-8">
+                        <div className="space-y-2">
+                            <h2 className="text-3xl font-semibold tracking-wide">Food Name: {foodName}</h2>
+                            <p className="">Food Id: {foodId}</p>
+                            <p className="">Donator Email: {donatorEmail}</p>
+                            <p className="">Donator Name: {donatorName}</p>
+                            <p className="">User Email: {email}</p>
+                            <p className="">Request Date: {currentDate}</p>
+                            <p className="">Pickup Location: {pickupLocation}</p>
+                            <p className="">Food Quantity: {foodQuantity}</p>
+                            <p className="">Expired Date: {expiredDateTime ? format(new Date(expiredDateTime), "yyyy-MM-dd") : ""}</p>
+                            <p className="">Additional Notes: {additionalNotes}</p>
+                        </div>
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-rose-400 dark:bg-rose-600 text-gray-900 dark:text-gray-50"
+                        >
+                            Request
+                        </button>
                     </div>
-                    <button
-                        onClick={() => setIsModalOpen(true)}
-                        className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-rose-400 dark:bg-rose-600 text-gray-900 dark:text-gray-50"
-                    >
-                        Request
-                    </button>
                 </div>
             </div>
 

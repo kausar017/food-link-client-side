@@ -3,6 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/Logo/foode-logo.png'
 import './Navbar.css'
 import { AuthContext } from "../../Provaider/AuthProvaider";
+import bg from '../../assets/bg/Sprinkle.svg'
+
+
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -15,7 +18,7 @@ const Navbar = () => {
         handalLogout()
     }
 
-    
+
     const link = <>
         <div className="sm:flex md:flex-col lg:flex-row gap-3">
             <NavLink to={'/'} rel="noopener noreferrer" className="flex items-center justify-center px-4 py-2 -mb-1 dark:border-">Home</NavLink>
@@ -28,7 +31,16 @@ const Navbar = () => {
 
     return (
         <div>
-            <header className="pb-10 pt-6 bg-gray-800 dark:bg-gray-100 text-gray-100 dark:text-gray-800 z-10 fixed w-full">
+            <header className="pb-10 pt-6  dark:bg-gray-100 text-gray-100 dark:text-gray-800 z-10 fixed w-full"
+                style={{
+                    backgroundImage: `url(${bg})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    // height: "100vh",
+                    width: "100%",
+
+                }}
+            >
                 <div className="container flex justify-between h-10 mx-auto">
                     <Link to={'/'} rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex gap-2 items-center p-2 ">
                         <img className="w-14" src={logo} alt="" />

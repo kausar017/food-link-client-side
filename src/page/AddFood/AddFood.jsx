@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provaider/AuthProvaider';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import bg from '../../assets/bg/Sprinkle.svg'
 const AddFood = () => {
 
     const navigat = useNavigate();
@@ -51,7 +51,7 @@ const AddFood = () => {
             return;
         }
 
-    
+
         const foodData = {
             ...formData,
             foodStatus,
@@ -85,7 +85,17 @@ const AddFood = () => {
     };
 
     return (
-        <div className="bg-gray-100 flex items-center justify-center pt-[120px]">
+
+        <div className="flex items-center justify-center py-[120px] min-h-screen "
+            style={{
+                backgroundImage: `url(${bg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                // height: "100vh",
+                width: "100%",
+
+            }}
+        >
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
                 <h1 className="text-2xl font-bold mb-6 text-center">Add Food</h1>
                 <form onSubmit={handleSubmit}>
@@ -183,7 +193,10 @@ const AddFood = () => {
                 </form>
             </div>
         </div>
+
     );
 };
 
 export default AddFood;
+
+
