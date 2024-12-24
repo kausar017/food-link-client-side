@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyFoodUpdate = () => {
     const { user } = useContext(AuthContext);
@@ -34,16 +36,32 @@ const MyFoodUpdate = () => {
             })
     }, [])
 
-    const handleUpdate = async (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
+        const form = e.target;
+        const foodName = form.foodName.value;
+        const foodImage = form.foodImage.value;
+        const foodId = form.foodId.value;
+        const donatorEmail = form.donatorEmail.value;
+        const donatorName = form.donatorName.value;
+        const userEmail = form.userEmail.value;
+        const currentDate = form.currentDate.value;
+        const pickupLocation = form.pickupLocation.value;
+        const expireDate = form.expireDate.value;
+        const additionalNotes = form.additionalNotes.value;
+
+        const formData = { foodName, foodImage, foodId, donatorEmail, donatorName, userEmail, currentDate, pickupLocation, expireDate, additionalNotes }
+        console.log(formData);
+
+        try {
+            axios.put(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`, formData)
+
+            Swal.fire('success', 'Food Data Succesfully Updated')
+        } catch (error) {
+            Swal.fire('Data NOt Updatet')
+        }
 
     };
-
-
-    if (!foodData) {
-        return <div>Loading...</div>;
-    }
-
 
     const {
         foodName,
@@ -68,7 +86,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="text"
                         name="foodName"
-                        defaultValue={foodName || ""}
+                        defaultValue={foodName}
                         required
                         className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
@@ -78,7 +96,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="url"
                         name="foodImage"
-                        defaultValue={foodImage || ""}
+                        defaultValue={foodImage}
                         required
                         className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
@@ -86,7 +104,7 @@ const MyFoodUpdate = () => {
                 <div>
                     <label className="block mb-1 ml-1">Food Id</label>
                     <input
-                        defaultValue={foodId || ""}
+                        defaultValue={foodId}
                         name="foodId"
                         className="block w-full p-2 border-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100 text-black"
                     />
@@ -96,7 +114,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="email"
                         name="donatorEmail"
-                        defaultValue={donatorEmail || ""}
+                        defaultValue={donatorEmail}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -105,7 +123,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="text"
                         name="donatorName"
-                        defaultValue={donatorName || ""}
+                        defaultValue={donatorName}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -114,7 +132,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="text"
                         name="userEmail"
-                        defaultValue={email || ""}
+                        defaultValue={email}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -123,7 +141,7 @@ const MyFoodUpdate = () => {
                     <input
                         type="date"
                         name="currentDate"
-                        defaultValue={currentDate || ""}
+                        defaultValue={currentDate}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -131,8 +149,8 @@ const MyFoodUpdate = () => {
                     <label className="block mb-1 ml-1">Pickup Location</label>
                     <input
                         type="text"
-                        name="location"
-                        defaultValue={pickupLocation || ""}
+                        name="pickupLocation"
+                        defaultValue={pickupLocation}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -149,9 +167,9 @@ const MyFoodUpdate = () => {
                     <label className="block mb-1 ml-1">Additional Notes</label>
                     <textarea
                         type="text"
-                        onChange={(e) => setNots(e.target.value)}
-                        name="notes"
-                        defaultValue={additionalNotes }
+
+                        name="additionalNotes"
+                        defaultValue={additionalNotes}
                         className="block w-full p-3 border-2 text-black rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
