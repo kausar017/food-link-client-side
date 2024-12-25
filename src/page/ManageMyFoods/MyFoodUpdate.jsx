@@ -83,7 +83,7 @@ const MyFoodUpdate = () => {
 
         >
 
-            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-2xl h-[800px] overflow-y-scroll mx-auto space-y-3 rounded-md dark:bg-gray-50 border-2 p-5 bg-white shadow-xl">
+            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-2xl h-[800px] overflow-y-scroll mx-auto space-y-3 rounded-md dark:bg-gray-50 border-2 p-5 text-white backdrop-blur-xl shadow-xl">
                 <div className="text-2xl font-bold text-center">
                     <h1>Update Food</h1>
                 </div>
