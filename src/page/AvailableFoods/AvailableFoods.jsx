@@ -83,7 +83,7 @@ const AvailableFoods = () => {
                 {
                     foods.length ? (
                         <div
-                            className={`grid gap-5 items-center m-3 ${isThreeColumn ? "lg:grid-cols-3 md:grid-cols-2" : "lg:grid-cols-2 md:grid-cols-1"
+                            className={`grid gap-5 items-center m-3 py-5 ${isThreeColumn ? "lg:grid-cols-3 md:grid-cols-2" : "lg:grid-cols-2 md:grid-cols-1"
                                 }`}
                         >
                             {foods?.map(food => (
