@@ -92,7 +92,7 @@ const MyFoodUpdate = () => {
     } = foodData;
 
     return (
-        <div className="py-[150px]"
+        <div className="py-[150px] px-2"
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",

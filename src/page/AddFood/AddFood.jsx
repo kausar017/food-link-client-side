@@ -89,7 +89,7 @@ const AddFood = () => {
 
     return (
 
-        <div className="flex items-center justify-center py-[120px] min-h-screen "
+        <div className="flex items-center justify-center py-[120px] min-h-screen px-2"
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",

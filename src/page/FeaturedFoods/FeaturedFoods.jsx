@@ -52,8 +52,8 @@ const FeaturedFoods = () => {
                         {
                             feaured?.map(feaur => <div key={feaur._id}>
 
-                                < div className="rounded-md shadow-md bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800 transition hover:scale-105">
-                                    <img src={feaur?.foodImage} alt={feaur?.foodImage} className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
+                                < div className="rounded-md shadow-md border bg-cyan-900/50 dark:bg-gray-50 text-gray-100 dark:text-gray-800 transition hover:scale-105 p-2">
+                                    <img src={feaur?.foodImage} alt={feaur?.foodImage} className="object-cover rounded-lg object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
                                     <div className="flex flex-col justify-between p-6 space-y-8">
                                         <div className="space-y-2">
                                             <div className='flex  items-center justify-between'>

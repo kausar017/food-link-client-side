@@ -11,7 +11,7 @@ const AvailableFoodsCard = ({ food }) => {
 
     return (
         <div>
-            <div className="rounded-md shadow-md bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800 transition hover:scale-105">
+            <div className="rounded-md shadow-md p-2 border-2 bg-cyan-900/50 dark:bg-gray-50 text-gray-100 dark:text-gray-800 transition hover:scale-105">
                 <img src={foodImage} alt={foodImage} className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
                 <div className="flex flex-col justify-between p-6 space-y-8">
                     <div className="space-y-2">
