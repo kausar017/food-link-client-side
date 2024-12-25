@@ -11,7 +11,7 @@ const Login = () => {
 
     const navigat = useNavigate()
     const location = useLocation()
-    const from = location?.state?.pathname || '/';
+    const from = location?.state?.from?.pathname || '/';
 
     const { handalLogin, handaleGoogle, handaleGithub } = useContext(AuthContext)
 
@@ -56,7 +56,7 @@ const Login = () => {
                     .then(res => console.log(res.data))
                 Swal.fire('Login Succesfully')
                 form.reset()
-                navigat(from)
+                navigat(from, { replace: true })
             })
             .catch(error => {
                 console.log(error)
@@ -67,10 +67,9 @@ const Login = () => {
 
     const handaleGoogleLogin = async () => {
 
-
         try {
             await handaleGoogle()
-            navigat(from);
+            navigat(from, { replace: true })
             Swal.fire('Google Login Succesfully')
         }
         catch (error) {

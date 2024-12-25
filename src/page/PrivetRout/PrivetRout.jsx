@@ -12,7 +12,7 @@ const PrivetRout = ({ children }) => {
         return <Loader></Loader>
     }
     if (!user) {
-        return <Navigate state={location?.pathname} to="/login"></Navigate>
+        return <Navigate state={{from:location}} to="/login" replace></Navigate>
     }
 
     return children;

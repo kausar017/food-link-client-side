@@ -8,10 +8,9 @@ import bg from '../../assets/bg/Sprinkle.svg'
 
 const Signup = () => {
 
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    const pathname = location.state || '/'
+    const navigat = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/';
 
     useEffect(() => {
         document.title = "Food link | REGISTER"
@@ -67,7 +66,7 @@ const Signup = () => {
                 const user = res.user
                 setUser(user);
                 Swal.fire("Registration successful!");
-                navigate(pathname);
+                navigat(from, { replace: true })
             })
             .catch(error => {
                 Swal.fire("Registration not successful! email allrady registared", error);

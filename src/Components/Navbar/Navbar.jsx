@@ -92,7 +92,7 @@ const Navbar = () => {
                                 {
                                     user ?
                                         <div className=" flex flex-col items-center">
-                                            <img title={user?.displayName} className="w-12 h-12 rounded-full border-2" src={user?.photoURL} alt="" />
+                                            <img referrerPolicy="no-referrer" title={user?.displayName} alt={user?.displayName} className="w-12 h-12 rounded-full border-2" src={user?.photoURL} />
                                             <h3>{user?.displayName}</h3>
                                         </div>
 

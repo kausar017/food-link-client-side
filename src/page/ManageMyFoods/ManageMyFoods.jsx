@@ -65,7 +65,7 @@ const ManageMyFoods = () => {
         });
     }
 
-    console.log(requests);
+    // console.log(requests);
 
 
     return (
@@ -85,71 +85,60 @@ const ManageMyFoods = () => {
                 <div className="max-w-96 mx-auto h-1 bg-white"></div>
             </div>
 
+
             {
                 requests.length ?
 
 
-                    <div className="container p-2 mx-auto sm:p-4 text-gray-100 dark:text-gray-800">
-
-                        <div className="overflow-x-auto rounded-xl shadow-xl">
-                            <table className="w-full p-6 text-left whitespace-nowrap">
-                                <colgroup>
-                                    <col className="" />
-                                    <col />
-                                    <col />
-                                    <col />
-                                    <col />
-
-                                </colgroup>
-                                <thead>
-                                    <tr className="bg-gray-700/60 dark:bg-gray-300">
-                                        <th className="p-3"></th>
-                                        <th className="p-3">Donar Name</th>
-                                        <th className="p-3">Pickup Location</th>
-                                        <th className="p-3">Expire Date</th>
-                                        <th className="p-3">Request Date</th>
-                                        <th className="p-3"></th>
-
+                    <div className="container mx-auto p-2 max-sm:overflow-x-scroll">
+                        <table className="table-auto w-full border-collapse border border-gray-300 ">
+                            <thead>
+                                <tr className="bg-white/10 text-white">
+                                    <th className="border border-gray-300 px-4 py-2">Donar Name</th>
+                                    <th className="border border-gray-300 px-4 py-2">Quantity</th>
+                                    <th className="border border-gray-300 px-4 py-2">Location</th>
+                                    <th className="border border-gray-300 px-4 py-2">Expire Date</th>
+                                    <th className="border border-gray-300 px-4 py-2">Request Date</th>
+                                    <th className="border border-gray-300 px-4 py-2">Image</th>
+                                    <th className="border border-gray-300 px-4 py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {requests?.map((food) => (
+                                    <tr key={food._id} className="text-white">
+                                        <td className="border border-gray-300 px-4 py-2">{food?.donatorName}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{food?.foodQuantity}</td>
+                                        <td className="border border-gray-300 px-4 py-2 ">
+                                            {food?.pickupLocation}
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2">
+                                            <p>{new Date(food?.expireDate).toLocaleDateString()}</p>
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2">
+                                            <p>{format(new Date(food?.currentDate), "P")}</p>
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2">
+                                            <img src={food?.foodImage} className="w-16 h-16 object-cover" />
+                                        </td>
+                                        <td className="flex gap-5 items-center justify-around px-3 py-3">
+                                            <Link to={`/foodUpdate/${food._id}`} ><MdOutlineSystemUpdateAlt size={20} color="white"></MdOutlineSystemUpdateAlt> </Link>
+                                            <button onClick={() => handaleDelete(food._id)}><MdDeleteOutline size={25} color="red"></MdDeleteOutline></button>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody className="border-b bg-gray-900/50 dark:bg-gray-50 border-gray-700 dark:border-gray-300">
-                                    {requests?.map(request =>
-                                        <tr key={request._id} className="border-b ">
-                                            <td className="px-3 text-2xl font-medium text-gray-400 dark:text-gray-600"></td>
-                                            <td className="px-3 py-2">
-                                                <p>{request?.donatorName}</p>
-                                            </td>
-                                            <td className="px-3 py-2">
-                                                <span>{request?.pickupLocation}</span>
+                                ))}
+                            </tbody>
+                        </table>
 
-                                            </td>
-                                            <td className="px-3 py-2">
-                                                <p>{new Date(request?.expiredDateTime).toLocaleDateString()}</p>
-                                            </td>
-                                            <td className="px-3 py-2">
-                                                {/* <p>{request?.formattedDate}</p> */}
-                                                <p>{format(new Date(request?.formattedDate), "P")}</p>
-                                            </td>
-                                            <td className="flex gap-5 items-center justify-around px-3">
-                                                <Link to={`/foodUpdate/${request._id}`} ><MdOutlineSystemUpdateAlt size={20} color="white"></MdOutlineSystemUpdateAlt> </Link>
-                                                <button onClick={() => handaleDelete(request._id)}><MdDeleteOutline size={25} color="red"></MdDeleteOutline></button>
-                                            </td>
-
-                                        </tr>
-                                    )}
-                                </tbody>
-
-                            </table>
-                        </div>
                     </div>
+
                     :
+
 
                     <div className="flex  flex-col justify-center items-center min-h-96">
                         <h1 className="text-4xl font-bold text-white">Data Not Found</h1>
                         <p><LuDatabase size={120} color="white"></LuDatabase> </p>
                     </div>
             }
-
         </div>
     );
 };

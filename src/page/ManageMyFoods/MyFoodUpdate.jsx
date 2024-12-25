@@ -18,10 +18,10 @@ const MyFoodUpdate = () => {
     console.log(params.id);
 
     const [foodData, setFoodData] = useState([]);
-    console.log(foodData);
+    // console.log(foodData);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`,)
             .then(res => res.json())
             .then(data => setFoodData(data))
             .catch(errr => {
@@ -35,17 +35,38 @@ const MyFoodUpdate = () => {
         const foodName = form.foodName.value;
         const foodImage = form.foodImage.value;
         const foodId = form.foodId.value;
+        const foodQuantity = form.foodQuantity.value;
         const donatorName = form.donatorName.value;
         const currentDate = form.currentDate.value;
         const pickupLocation = form.pickupLocation.value;
         const expireDate = form.expireDate.value;
         const additionalNotes = form.additionalNotes.value;
 
-        const formData = { foodName, foodImage, foodId, donatorEmail, email, donatorName, currentDate, pickupLocation, expireDate, additionalNotes }
+        const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, currentDate, pickupLocation, expireDate, additionalNotes }
         console.log(formData);
 
+        // Validation checks
+        if (!formData.foodName || !formData.foodImage || !formData.foodQuantity || !formData.pickupLocation || !formData.expireDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill in all required fields!',
+            });
+            return;
+        }
+
+        if (formData.foodQuantity <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Quantity',
+                text: 'Food quantity must be greater than 0.',
+            });
+            return;
+        }
+
+
         try {
-            axiosSecure.put(`/myRequest/${params?.id}`, formData)
+            axiosSecure.put(`/myRequest/${params?.id}`, formData, { withCredentials: true })
 
             Swal.fire('success', 'Food Data Succesfully Updated')
             navigat(from)
@@ -112,6 +133,14 @@ const MyFoodUpdate = () => {
                     <input
                         defaultValue={foodId}
                         name="foodId"
+                        className="block w-full p-2 border-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100 text-black"
+                    />
+                </div>
+                <div>
+                    <label className="block mb-1 ml-1">Food QuanTity</label>
+                    <input
+                        defaultValue={foodQuantity}
+                        name="foodQuantity"
                         className="block w-full p-2 border-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100 text-black"
                     />
                 </div>
