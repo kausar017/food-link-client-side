@@ -3,21 +3,22 @@ import { useEffect, useState } from "react";
 import AvailableFoodsCard from "./AvailableFoodsCard";
 import { LuDatabase } from "react-icons/lu";
 import bg from '../../assets/bg/Sprinkle.svg'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AvailableFoods = () => {
-
+    const axiosSecure = useAxiosSecure()
 
     const [foods, setFoods] = useState([])
     const [search, setSearch] = useState('')
     const [sort, setSort] = useState('')
 
-    console.log(search);
+    // console.log(search);
 
     const [isThreeColumn, setIsThreeColumn] = useState(true);
 
     useEffect(() => {
         const fatchAllData = async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
+            const { data } = await axiosSecure.get(`/foodData?search=${search}&sort=${sort}`)
             const filtarData = data.filter(d => d.foodStatus === 'available')
             setFoods(filtarData)
         }
@@ -30,6 +31,7 @@ const AvailableFoods = () => {
 
     const toggleLayout = () => {
         setIsThreeColumn(!isThreeColumn);
+        console.log("Layout toggled:", !isThreeColumn);
     };
 
 
@@ -79,20 +81,23 @@ const AvailableFoods = () => {
                 </div>
 
                 {
-                    foods.length ?
-                        // className = {`grid gap-4 m-3 ${isThreeColumn ? "grid-cols-3" : "grid-cols-2"}`}
-                        // grid lg:grid-cols-3 md:grid-cols-2  gap-5 items-center m-3
-                        <div className={`grid lg:grid-cols-3 gap-5 md:grid-cols-2 items-center m-3 ${isThreeColumn ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
-                            {
-                                foods?.map(food => <AvailableFoodsCard key={food._id} food={food}></AvailableFoodsCard>)
-                            }
+                    foods.length ? (
+                        <div
+                            className={`grid gap-5 items-center m-3 ${isThreeColumn ? "lg:grid-cols-3 md:grid-cols-2" : "lg:grid-cols-2 md:grid-cols-1"
+                                }`}
+                        >
+                            {foods?.map(food => (
+                                <AvailableFoodsCard key={food._id} food={food}></AvailableFoodsCard>
+                            ))}
                         </div>
-                        :
-
-                        <div className="flex  flex-col justify-center items-center min-h-96">
+                    ) : (
+                        <div className="flex flex-col justify-center items-center min-h-96">
                             <h1 className="text-4xl font-bold text-white">Data Not Found</h1>
-                            <p><LuDatabase size={120} color="white"></LuDatabase> </p>
+                            <p>
+                                <LuDatabase size={120} color="white"></LuDatabase>
+                            </p>
                         </div>
+                    )
                 }
             </div>
         </div>

@@ -7,10 +7,12 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { LuDatabase } from "react-icons/lu";
 import bg from '../../assets/bg/Sprinkle.svg'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
 
 const ManageMyFoods = () => {
-
+    const axiosSecure = useAxiosSecure()
 
     const { user } = useContext(AuthContext);
     // console.log(user?.email);
@@ -22,8 +24,10 @@ const ManageMyFoods = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myRequest?email=${user?.email}`, { withCredentials: true });
+                const { data } = await axiosSecure.get(`/myRequest?email=${user?.email}`);
                 setRequests(data);
+
+
             } catch (error) {
                 console.error("Error fetching requests:", error);
             }

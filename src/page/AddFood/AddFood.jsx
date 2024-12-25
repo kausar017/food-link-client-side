@@ -4,7 +4,10 @@ import { AuthContext } from '../../Provaider/AuthProvaider';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import bg from '../../assets/bg/Sprinkle.svg'
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+
 const AddFood = () => {
+    const axiosSecure = useAxiosSecure()
 
     const navigat = useNavigate();
     const location = useLocation();
@@ -61,7 +64,7 @@ const AddFood = () => {
         };
 
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/food`, foodData)
+            const { data } = await axiosSecure.post(`/food`, foodData)
             console.log(data);
             Swal.fire('Food added successfully!');
             navigat(from)
@@ -96,15 +99,15 @@ const AddFood = () => {
 
             }}
         >
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
-                <h1 className="text-2xl font-bold mb-6 text-center">Add Food</h1>
+            <div className="backdrop-blur-xl border-2 p-8 rounded-lg shadow-md w-full max-w-xl">
+                <h1 className="text-2xl font-bold mb-6 text-center text-white">Add Food</h1>
                 <form onSubmit={handleSubmit}>
                     {/* Food Name */}
                     <div className="mb-4">
-                        <label htmlFor="foodName" className="block text-sm font-medium text-gray-700">Food Name</label>
+                        <label htmlFor="foodName" className="block text-sm font-medium text-white">Food Name</label>
                         <input
                             type="text"
-                            id="foodName"
+                            placeholder='Food Name'
                             name="foodName"
                             value={formData.foodName}
                             onChange={handleChange}
@@ -115,10 +118,10 @@ const AddFood = () => {
 
                     {/* Food Image */}
                     <div className="mb-4">
-                        <label htmlFor="foodImage" className="block text-sm font-medium text-gray-700">Food Image URL</label>
+                        <label htmlFor="foodImage" className="block text-sm font-medium text-white">Food Image URL</label>
                         <input
                             type="url"
-                            id="foodImage"
+                            placeholder='Food Image URL'
                             name="foodImage"
                             value={formData.foodImage}
                             onChange={handleChange}
@@ -129,10 +132,10 @@ const AddFood = () => {
 
                     {/* Food Quantity */}
                     <div className="mb-4">
-                        <label htmlFor="foodQuantity" className="block text-sm font-medium text-gray-700">Food Quantity</label>
+                        <label htmlFor="foodQuantity" className="block text-sm font-medium text-white">Food Quantity</label>
                         <input
                             type="number"
-                            id="foodQuantity"
+                            placeholder='Food Quantity'
                             name="foodQuantity"
                             value={formData.foodQuantity}
                             onChange={handleChange}
@@ -143,10 +146,10 @@ const AddFood = () => {
 
                     {/* Pickup Location */}
                     <div className="mb-4">
-                        <label htmlFor="pickupLocation" className="block text-sm font-medium text-gray-700">Pickup Location</label>
+                        <label htmlFor="pickupLocation" className="block text-sm font-medium text-white">Pickup Location</label>
                         <input
                             type="text"
-                            id="pickupLocation"
+                            placeholder='Pickup Location'
                             name="pickupLocation"
                             value={formData.pickupLocation}
                             onChange={handleChange}
@@ -157,7 +160,7 @@ const AddFood = () => {
 
                     {/* Expired Date/Time */}
                     <div className="mb-4">
-                        <label htmlFor="expiredDateTime" className="block text-sm font-medium text-gray-700">Expired Date/Time</label>
+                        <label htmlFor="expiredDateTime" className="block text-sm font-medium text-white">Expired Date/Time</label>
                         <input
                             type="datetime-local"
                             id="expiredDateTime"
@@ -171,9 +174,9 @@ const AddFood = () => {
 
                     {/* Additional Notes */}
                     <div className="mb-4">
-                        <label htmlFor="additionalNotes" className="block text-sm font-medium text-gray-700">Additional Notes</label>
+                        <label htmlFor="additionalNotes" className="block text-sm font-medium text-white">Additional Notes</label>
                         <textarea
-                            id="additionalNotes"
+                            placeholder='Additional Notes'
                             name="additionalNotes"
                             value={formData.additionalNotes}
                             onChange={handleChange}

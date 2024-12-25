@@ -5,8 +5,10 @@ import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 import bg from '../../assets/bg/Sprinkle.svg'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Detals = () => {
+    const axiosSecure = useAxiosSecure()
 
     const navigat = useNavigate();
     const location = useLocation();
@@ -31,7 +33,7 @@ const Detals = () => {
     // detals data fatching
     useEffect(() => {
         const fatchDetalsData = async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData/${params.id}`)
+            const { data } = await axiosSecure.get(`/foodData/${params.id}`)
             setDetals(data)
         }
         fatchDetalsData()
@@ -50,7 +52,7 @@ const Detals = () => {
         const myFoodRequest = { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, formattedDate: currentDate, additionalNotes, foodStatus, foodId, donatorName, donatorEmail, email }
 
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/myFood`, myFoodRequest)
+            const { data } = await axiosSecure.post(`/myFood`, myFoodRequest)
             console.log(data);
             Swal.fire('My requested Food added successfully!');
             navigat(from)
@@ -60,7 +62,7 @@ const Detals = () => {
                 foodStatus: "requested",
             };
 
-            const res = await axios.patch(`${import.meta.env.VITE_API_URL}/foodData/${params.id}`, updateData)
+            const res = await axiosSecure.patch(`/foodData/${params.id}`, updateData)
             if (res.data.modifiedCount) {
                 // Swal.fire('additionalNotes and foodStatus update successfully!');
             }
@@ -72,7 +74,7 @@ const Detals = () => {
 
 
     return (
-        <div className="py-[120px]"
+        <div className="py-[120px] min-h-screen"
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
@@ -83,10 +85,10 @@ const Detals = () => {
             }}
         >
             <div>
-                <div className="rounded-md max-w-[800px] mx-auto bg-white shadow-xl p-6 w-full ">
+                <div className="rounded-md max-w-[800px] mx-auto backdrop-blur-xl border-2 shadow-xl p-6 w-full ">
                     <img src={foodImage} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500 dark:bg-gray-500" />
                     <div className="flex flex-col justify-between p-6 space-y-8">
-                        <div className="space-y-2">
+                        <div className="space-y-2 text-white">
                             <h2 className="text-3xl font-semibold tracking-wide">Food Name: {foodName}</h2>
                             <p className="">Food Id: {foodId}</p>
                             <p className="">Donator Email: {donatorEmail}</p>

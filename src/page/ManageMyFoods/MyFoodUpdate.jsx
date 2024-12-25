@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
-import axios from "axios";
 import Swal from "sweetalert2";
 import bg from '../../assets/bg/Sprinkle.svg'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyFoodUpdate = () => {
+    const axiosSecure = useAxiosSecure()
 
     const navigat = useNavigate();
     const location = useLocation();
@@ -44,7 +45,7 @@ const MyFoodUpdate = () => {
         console.log(formData);
 
         try {
-            axios.put(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`, formData)
+            axiosSecure.put(`/myRequest/${params?.id}`, formData)
 
             Swal.fire('success', 'Food Data Succesfully Updated')
             navigat(from)
