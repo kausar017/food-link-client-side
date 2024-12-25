@@ -20,7 +20,7 @@ const MyFoodRequest = () => {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const { data } = await axiosSecure.get(`/myRequest?email=${user?.email}`, { withCredentials: true });
+                const { data } = await axiosSecure.get(`/myRequest?email=${user?.email}`);
                 setRequests(data);
             } catch (error) {
                 console.error("Error fetching requests:", error);

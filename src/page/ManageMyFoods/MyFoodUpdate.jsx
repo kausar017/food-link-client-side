@@ -37,16 +37,16 @@ const MyFoodUpdate = () => {
         const foodId = form.foodId.value;
         const foodQuantity = form.foodQuantity.value;
         const donatorName = form.donatorName.value;
-        const currentDate = form.currentDate.value;
+        const formattedDate = form.formattedDate.value;
         const pickupLocation = form.pickupLocation.value;
-        const expireDate = form.expireDate.value;
+        const expiredDateTime = form.expiredDateTime.value;
         const additionalNotes = form.additionalNotes.value;
 
-        const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, currentDate, pickupLocation, expireDate, additionalNotes }
+        const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, formattedDate, pickupLocation, expiredDateTime, additionalNotes }
         console.log(formData);
 
         // Validation checks
-        if (!formData.foodName || !formData.foodImage || !formData.foodQuantity || !formData.pickupLocation || !formData.expireDate) {
+        if (!formData.foodName || !formData.foodImage || !formData.foodQuantity || !formData.pickupLocation || !formData.expiredDateTime) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -66,7 +66,7 @@ const MyFoodUpdate = () => {
 
 
         try {
-            axiosSecure.put(`/myRequest/${params?.id}`, formData, { withCredentials: true })
+            axiosSecure.put(`/myRequest/${params?.id}`, formData)
 
             Swal.fire('success', 'Food Data Succesfully Updated')
             navigat(from)
@@ -85,7 +85,7 @@ const MyFoodUpdate = () => {
         additionalNotes,
         foodStatus,
         _id: foodId,
-        formattedDate: currentDate,
+        formattedDate,
         donatorName,
         donatorEmail,
         email,
@@ -177,8 +177,8 @@ const MyFoodUpdate = () => {
                     <label className="block mb-1 ml-1">Current Date</label>
                     <input
                         type="date"
-                        name="currentDate"
-                        defaultValue={currentDate}
+                        name="formattedDate"
+                        defaultValue={formattedDate}
                         className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
@@ -195,7 +195,7 @@ const MyFoodUpdate = () => {
                     <label className="block mb-1 ml-1">Expire Date</label>
                     <input
                         type="date"
-                        name="expireDate"
+                        name="expiredDateTime"
                         defaultValue={expiredDateTime ? format(new Date(expiredDateTime), "yyyy-MM-dd") : ""}
                         className="p-2 border-2 w-full text-black"
                     />

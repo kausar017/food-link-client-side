@@ -52,7 +52,7 @@ const Login = () => {
             .then(res => {
                 console.log(res);
                 const user = { email: res.user.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('http://localhost:5000/jwt', user,)
                     .then(res => console.log(res.data))
                 Swal.fire('Login Succesfully')
                 form.reset()

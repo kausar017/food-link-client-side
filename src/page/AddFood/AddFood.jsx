@@ -64,7 +64,7 @@ const AddFood = () => {
         };
 
         try {
-            const { data } = await axiosSecure.post(`/food`, foodData, { withCredentials: true })
+            const { data } = await axiosSecure.post(`/food`, foodData)
             console.log(data);
             Swal.fire('Food added successfully!');
             navigat(from)

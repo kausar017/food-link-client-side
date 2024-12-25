@@ -12,6 +12,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const ManageMyFoods = () => {
+
+
     const axiosSecure = useAxiosSecure()
 
     const { user } = useContext(AuthContext);
@@ -112,10 +114,10 @@ const ManageMyFoods = () => {
                                             {food?.pickupLocation}
                                         </td>
                                         <td className="border border-gray-300 px-4 py-2">
-                                            <p>{new Date(food?.expireDate).toLocaleDateString()}</p>
+                                            <p>{new Date(food?.expiredDateTime).toLocaleDateString()}</p>
                                         </td>
                                         <td className="border border-gray-300 px-4 py-2">
-                                            <p>{format(new Date(food?.currentDate), "P")}</p>
+                                            <p>{food?.formattedDate}</p>
                                         </td>
                                         <td className="border border-gray-300 px-4 py-2">
                                             <img src={food?.foodImage} className="w-16 h-16 object-cover" />

@@ -5,11 +5,12 @@ import { LuDatabase } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import bg from '../../assets/bg/Sprinkle.svg'
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../Loader/Loader";
+import Swal from "sweetalert2";
 
 const FeaturedFoods = () => {
-    const axiosSecure = useAxiosSecure()
-    const [feaured, setFeaured] = useState([])
+    // const [feaured, setFeaured] = useState([])
 
     // console.log(feaured);
 
@@ -19,14 +20,28 @@ const FeaturedFoods = () => {
 
     }
 
-    useEffect(() => {
-        const fatchAllData = async e => {
-            const { data } = await axiosSecure.get(`/featured`)
-            // const filtarData = data.filter(d => d.foodStatus === 'available')
-            setFeaured(data)
+    // useEffect(() => {
+    //     const fatchAllData = async e => {
+    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured`)
+    //         // const filtarData = data.filter(d => d.foodStatus === 'available')
+    //         setFeaured(data)
+    //     }
+    //     fatchAllData()
+    // }, [])
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['food'],
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured`)
+            return data;
         }
-        fatchAllData()
-    }, [])
+    })
+    const feaured = data || {}
+    // console.log(data);
+
+    if (isLoading) {
+        return <Loader></Loader>
+    }
 
     return (
 
@@ -46,7 +61,7 @@ const FeaturedFoods = () => {
             </div>
 
             {
-                feaured.length ?
+                feaured?.length ?
 
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-2 container mx-auto py-10">
                         {

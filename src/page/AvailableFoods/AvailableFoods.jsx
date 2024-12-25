@@ -3,27 +3,49 @@ import { useEffect, useState } from "react";
 import AvailableFoodsCard from "./AvailableFoodsCard";
 import { LuDatabase } from "react-icons/lu";
 import bg from '../../assets/bg/Sprinkle.svg'
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../Loader/Loader";
+import Swal from "sweetalert2";
 
 const AvailableFoods = () => {
-    const axiosSecure = useAxiosSecure()
 
     const [foods, setFoods] = useState([])
     const [search, setSearch] = useState('')
     const [sort, setSort] = useState('')
 
-    // console.log(search);
 
     const [isThreeColumn, setIsThreeColumn] = useState(true);
 
     useEffect(() => {
         const fatchAllData = async () => {
-            const { data } = await axiosSecure.get(`/foodData?search=${search}&sort=${sort}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
             const filtarData = data.filter(d => d.foodStatus === 'available')
             setFoods(filtarData)
         }
         fatchAllData()
     }, [search, sort])
+
+    // const TanStack = useQuery({
+    //     queryKey: ["foods", search, sort],
+    //     queryFn: async () => {
+    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
+    //         const filtarData = data.filter(d => d.foodStatus === 'available')
+    //         return filtarData;
+    //     }
+    // })
+    // const { data, isError, isLoading, isPending, isFetching, isSuccess } = TanStack;
+
+    // if (isLoading) {
+    //     return <Loader></Loader>
+    // }
+
+    // if (isError) {
+    //     return Swal.fire(isError)
+    // }
+
+    // console.log(data, isError, isLoading, isSuccess);
+    // console.log(TanStack);
+
 
     const handaleSort = () => {
         setSort()
@@ -58,7 +80,7 @@ const AvailableFoods = () => {
                         <button onClick={toggleLayout} className="text-white border-2 p-2 rounded-xl lg:block max-sm:hidden sm:hidden"> Change Layout</button>
                     </div>
                     <div>
-                        <h1 className="text-2xl text-white">Available Foots: {foods.length}</h1>
+                        <h1 className="text-2xl text-white">Available Foots: {foods?.length}</h1>
                     </div>
                     <div>
                         <fieldset className="w-full space-y-1 text-gray-100 dark:text-gray-800">
@@ -80,8 +102,9 @@ const AvailableFoods = () => {
                     </div>
                 </div>
 
+
                 {
-                    foods.length ? (
+                    foods?.length ? (
                         <div
                             className={`grid gap-5 items-center m-3 py-5 ${isThreeColumn ? "lg:grid-cols-3 md:grid-cols-2" : "lg:grid-cols-2 md:grid-cols-1"
                                 }`}
