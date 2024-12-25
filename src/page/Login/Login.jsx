@@ -119,7 +119,7 @@ const Login = () => {
                                 <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                             </div>
                         </div>
-                        <button className="block w-full p-3 text-center rounded-sm text-gray-900 dark:text-gray-50 bg-rose-400 dark:bg-rose-600">Login</button>
+                        <button className="block w-full p-3 text-center rounded-sm text-white border-2 hover:bg-white/10  dark:text-gray-50 dark:bg-rose-600">Login</button>
 
                         <div className="flex items-center pt-4 space-x-1">
                             <div className="flex-1 h-px sm:w-16 bg-gray-700 dark:bg-gray-300"></div>
@@ -135,7 +135,7 @@ const Login = () => {
 
                             <Link
                                 onClick={!isDisabled ? handaleGIthubLogin : undefined}
-                                title="github google email not provaided"
+                                title="github email not provaided"
                                 aria-label="Log in with GitHub"
                                 className={`p-3 rounded-sm ${isDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
                             >
