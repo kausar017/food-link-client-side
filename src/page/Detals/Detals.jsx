@@ -25,7 +25,7 @@ const Detals = () => {
     const { email, displayName, photoURL } = user || {};
 
     const { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, additionalNotes, foodStatus, _id: foodId, donatorName, donatorEmail, } = detals || {}
-    console.log(additionalNotes);
+    // console.log(additionalNotes);
 
     // current date
     const date = new Date();
@@ -44,7 +44,7 @@ const Detals = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notes, setNots] = useState(additionalNotes);
 
-    console.log(notes);
+    // console.log(notes);
 
 
     // my request data insarting

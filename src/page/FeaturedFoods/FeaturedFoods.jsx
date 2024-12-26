@@ -6,10 +6,7 @@ import bg from '../../assets/bg/Sprinkle.svg'
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 
-// motion
-import { motion } from 'framer-motion';
-// varients
-import { fadIn } from '../../../src/varients'
+
 
 const FeaturedFoods = () => {
 

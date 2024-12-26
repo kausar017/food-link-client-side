@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+
 
 const OurImpact = () => {
 
@@ -9,7 +9,7 @@ const OurImpact = () => {
                     <div
 
                     >
-                        <motion.h2 className="text-3xl font-bold text-center text-blue-700 mb-8">Our Impact </motion.h2>
+                        <h2 className="text-3xl font-bold text-center text-blue-700 mb-8">Our Impact </h2>
 
                         <p className="text-center text-gray-600 mb-6 text-xl">
                             Together, we’ve made a significant impact across various locations. Here’s a glimpse of where your generosity has reached.
