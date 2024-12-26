@@ -17,7 +17,7 @@ const Detals = () => {
 
 
     const [detals, setDetals] = useState({});
-    console.log(detals);
+    // console.log(detals);
 
     const params = useParams()
     const { user } = useContext(AuthContext);
@@ -53,7 +53,7 @@ const Detals = () => {
 
         try {
             const { data } = await axiosSecure.post(`/myFood`, myFoodRequest)
-            console.log(data);
+            // console.log(data);
             Swal.fire('My requested Food added successfully!');
             navigat(from)
 

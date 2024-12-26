@@ -15,7 +15,7 @@ const MyFoodUpdate = () => {
 
     const { user } = useContext(AuthContext);
     const params = useParams();
-    console.log(params.id);
+    // console.log(params.id);
 
     const [foodData, setFoodData] = useState([]);
     // console.log(foodData);
@@ -24,8 +24,9 @@ const MyFoodUpdate = () => {
         fetch(`${import.meta.env.VITE_API_URL}/myRequest/${params?.id}`,)
             .then(res => res.json())
             .then(data => setFoodData(data))
-            .catch(errr => {
-                console.log(errr.massage);
+            .catch(error => {
+                // console.log(error.massage);
+                Swal.fire(error.massage)
             })
     }, [])
 
@@ -43,7 +44,7 @@ const MyFoodUpdate = () => {
         const additionalNotes = form.additionalNotes.value;
 
         const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, formattedDate, pickupLocation, expiredDateTime, additionalNotes }
-        console.log(formData);
+        // console.log(formData);
 
         // Validation checks
         if (!formData.foodName || !formData.foodImage || !formData.foodQuantity || !formData.pickupLocation || !formData.expiredDateTime) {

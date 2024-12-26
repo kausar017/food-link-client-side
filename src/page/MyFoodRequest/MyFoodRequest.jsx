@@ -14,7 +14,7 @@ const MyFoodRequest = () => {
 
     const [requests, setRequests] = useState([])
 
-    console.log(requests);
+    // console.log(requests);
 
 
     useEffect(() => {

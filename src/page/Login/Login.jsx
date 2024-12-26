@@ -46,20 +46,20 @@ const Login = () => {
         if (validatePassword(password)) {
             return
         }
-        console.log(email, password);
+        // console.log(email, password);
 
         handalLogin(email, password)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 const user = { email: res.user.email }
                 axios.post('http://localhost:5000/jwt', user,)
-                    .then(res => console.log(res.data))
+                    // .then(res => console.log(res.data))
                 Swal.fire('Login Succesfully')
                 form.reset()
                 navigat(from, { replace: true })
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 Swal.fire('login not succesfully try again later')
                 form.reset()
             })

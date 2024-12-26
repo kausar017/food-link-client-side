@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import AvailableFoodsCard from "./AvailableFoodsCard";
 import { LuDatabase } from "react-icons/lu";
 import bg from '../../assets/bg/Sprinkle.svg'
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../Loader/Loader";
-import Swal from "sweetalert2";
 
 const AvailableFoods = () => {
 
@@ -25,27 +22,7 @@ const AvailableFoods = () => {
         fatchAllData()
     }, [search, sort])
 
-    // const TanStack = useQuery({
-    //     queryKey: ["foods", search, sort],
-    //     queryFn: async () => {
-    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foodData?search=${search}&sort=${sort}`)
-    //         const filtarData = data.filter(d => d.foodStatus === 'available')
-    //         return filtarData;
-    //     }
-    // })
-    // const { data, isError, isLoading, isPending, isFetching, isSuccess } = TanStack;
-
-    // if (isLoading) {
-    //     return <Loader></Loader>
-    // }
-
-    // if (isError) {
-    //     return Swal.fire(isError)
-    // }
-
-    // console.log(data, isError, isLoading, isSuccess);
-    // console.log(TanStack);
-
+   
 
     const handaleSort = () => {
         setSort()
@@ -53,7 +30,7 @@ const AvailableFoods = () => {
 
     const toggleLayout = () => {
         setIsThreeColumn(!isThreeColumn);
-        console.log("Layout toggled:", !isThreeColumn);
+        // console.log("Layout toggled:", !isThreeColumn);
     };
 
 
