@@ -23,7 +23,7 @@ const AvailableFoodsCard = ({ food }) => {
                                 ${foodStatus === "available" ? "bg-green-800 px-2 rounded-full" : ""}
                                 `}>{foodStatus}</p>
                         </div>
-                        <p title={additionalNotes} className="text-gray-100 dark:text-gray-800">{additionalNotes.slice(0, 70)}...</p>
+                        <p title={additionalNotes} className="text-gray-100 dark:text-gray-800">{additionalNotes?.slice(0, 70)}...</p>
                         <p>Food Quantity: {foodQuantity}</p>
                         <p>Expire Date: {format(new Date(expiredDateTime), "P")} </p>
 
@@ -36,7 +36,7 @@ const AvailableFoodsCard = ({ food }) => {
 };
 
 AvailableFoodsCard.propTypes = {
-    food: PropTypes.array.isRequired
+    food: PropTypes.object.isRequired
 };
 
 export default AvailableFoodsCard;

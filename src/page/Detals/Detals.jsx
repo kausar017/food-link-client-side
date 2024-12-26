@@ -25,6 +25,7 @@ const Detals = () => {
     const { email, displayName, photoURL } = user || {};
 
     const { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, additionalNotes, foodStatus, _id: foodId, donatorName, donatorEmail, } = detals || {}
+    console.log(additionalNotes);
 
     // current date
     const date = new Date();
@@ -43,11 +44,13 @@ const Detals = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notes, setNots] = useState(additionalNotes);
 
+    console.log(notes);
 
 
     // my request data insarting
     const handaleSubmit = async (e) => {
         e.preventDefault()
+        const notes = e.target.notes.value;
 
         const myFoodRequest = { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, formattedDate: currentDate, notes, foodStatus, foodId, donatorName, donatorEmail, email }
 
@@ -58,7 +61,7 @@ const Detals = () => {
             navigat(from)
 
             const updateData = {
-                additionalNotes: notes,
+                // additionalNotes: notes,
                 foodStatus: "requested",
             };
 

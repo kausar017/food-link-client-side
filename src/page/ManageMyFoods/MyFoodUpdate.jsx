@@ -41,9 +41,9 @@ const MyFoodUpdate = () => {
         const formattedDate = form.formattedDate.value;
         const pickupLocation = form.pickupLocation.value;
         const expiredDateTime = form.expiredDateTime.value;
-        const additionalNotes = form.additionalNotes.value;
+        const notes = form.notes.value;
 
-        const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, formattedDate, pickupLocation, expiredDateTime, additionalNotes }
+        const formData = { foodName, foodImage, foodId, foodQuantity, donatorEmail, email, donatorName, formattedDate, pickupLocation, expiredDateTime, notes }
         // console.log(formData);
 
         // Validation checks
@@ -83,7 +83,7 @@ const MyFoodUpdate = () => {
         foodQuantity,
         pickupLocation,
         expiredDateTime,
-        additionalNotes,
+        notes,
         foodStatus,
         _id: foodId,
         formattedDate,
@@ -206,8 +206,8 @@ const MyFoodUpdate = () => {
                     <textarea
                         type="text"
 
-                        name="additionalNotes"
-                        defaultValue={additionalNotes}
+                        name="notes"
+                        defaultValue={notes}
                         className="block w-full p-3 border-2 text-black rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
                     />
                 </div>
