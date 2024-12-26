@@ -49,7 +49,7 @@ const Detals = () => {
     const handaleSubmit = async (e) => {
         e.preventDefault()
 
-        const myFoodRequest = { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, formattedDate: currentDate, additionalNotes, foodStatus, foodId, donatorName, donatorEmail, email }
+        const myFoodRequest = { foodName, foodImage, foodQuantity, pickupLocation, expiredDateTime, formattedDate: currentDate, notes, foodStatus, foodId, donatorName, donatorEmail, email }
 
         try {
             const { data } = await axiosSecure.post(`/myFood`, myFoodRequest)
