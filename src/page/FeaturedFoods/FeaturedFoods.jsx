@@ -1,33 +1,14 @@
 import axios from "axios";
 import { format } from "date-fns";
-import { useContext, useEffect, useState } from "react";
 import { LuDatabase } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../Provaider/AuthProvaider";
 import bg from '../../assets/bg/Sprinkle.svg'
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
-import Swal from "sweetalert2";
 
 const FeaturedFoods = () => {
-    // const [feaured, setFeaured] = useState([])
 
-    // console.log(feaured);
 
-    // const []
-    const { user } = useContext(AuthContext)
-    if (!user) {
-
-    }
-
-    // useEffect(() => {
-    //     const fatchAllData = async e => {
-    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured`)
-    //         // const filtarData = data.filter(d => d.foodStatus === 'available')
-    //         setFeaured(data)
-    //     }
-    //     fatchAllData()
-    // }, [])
 
     const { data, isLoading } = useQuery({
         queryKey: ['food'],

@@ -1,13 +1,20 @@
 import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provaider/AuthProvaider';
-import axios from 'axios';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import bg from '../../assets/bg/Sprinkle.svg'
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useMutation } from '@tanstack/react-query';
 
 const AddFood = () => {
     const axiosSecure = useAxiosSecure()
+
+    const { isPending, mutateAsync } = useMutation({
+        mutationFn: async data => {
+            await axiosSecure.post(`/food`, data)
+        }
+    })
 
     const navigat = useNavigate();
     const location = useLocation();
@@ -62,10 +69,11 @@ const AddFood = () => {
             donatorName: (user?.displayName),
             donatorEmail: (user?.email),
         };
-
+        // mack a post request useing use mutation hook
         try {
-            const { data } = await axiosSecure.post(`/food`, foodData)
-            console.log(data);
+            // const { data } = await axiosSecure.post(`/food`, foodData)
+            await mutateAsync(foodData)
+            // console.log(data);
             Swal.fire('Food added successfully!');
             navigat(from)
         } catch (error) {
@@ -190,7 +198,7 @@ const AddFood = () => {
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
                         >
-                            Add Food
+                            {isPending ? "Saving....." : "Add Food"}
                         </button>
                     </div>
                 </form>
