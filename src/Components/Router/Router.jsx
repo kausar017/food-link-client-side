@@ -13,6 +13,8 @@ import Signup from "../../page/Signup/Signup";
 import PrivetRout from "../../page/PrivetRout/PrivetRout";
 import Detals from "../../page/Detals/Detals";
 import MyFoodUpdate from "../../page/ManageMyFoods/MyFoodUpdate";
+import AboutUs from "../../page/AboutUs/AboutUs";
+import Contact from "../../page/Contact/Contact";
 
 const Router = createBrowserRouter([
     {
@@ -47,18 +49,19 @@ const Router = createBrowserRouter([
                 </PrivetRout>
             },
             {
-                path: '/login',
-                element: <Login></Login>
+                path: '/about',
+                element: <AboutUs></AboutUs>
             },
             {
-                path: '/singup',
-                element: <Signup></Signup>
+                path: '/contact',
+                element: <Contact></Contact>
             },
+            
             {
                 path: '/detals/:id',
-                element: <PrivetRout>
+                element:
                     <Detals></Detals>
-                </PrivetRout>
+
             },
             {
                 path: '/foodUpdate/:id',
@@ -67,6 +70,14 @@ const Router = createBrowserRouter([
                 </PrivetRout>
             }
         ]
+    },
+    {
+        path: '/login',
+        element: <Login></Login>
+    },
+    {
+        path: '/singup',
+        element: <Signup></Signup>
     },
 ]);
 

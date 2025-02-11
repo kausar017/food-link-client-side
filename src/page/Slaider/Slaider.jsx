@@ -37,9 +37,9 @@ const Bannar = () => {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="mySwiper"
                 >
-                    <SwiperSlide><img className='h-[80vh] w-full object-cover' src={image1} alt="Slide 1" /></SwiperSlide>
-                    <SwiperSlide><img className='h-[80vh] w-full object-cover' src={image2} alt="Slide 2" /></SwiperSlide>
-                    <SwiperSlide><img className='h-[80vh] w-full object-cover' src={image3} alt="Slide 3" /></SwiperSlide>
+                    <SwiperSlide><img className='h-[70vh] w-full object-cover' src={image1} alt="Slide 1" /></SwiperSlide>
+                    <SwiperSlide><img className='h-[70vh] w-full object-cover' src={image2} alt="Slide 2" /></SwiperSlide>
+                    <SwiperSlide><img className='h-[70vh] w-full object-cover' src={image3} alt="Slide 3" /></SwiperSlide>
                     {/* <SwiperSlide><img className='h-[80vh] w-full max-sm:object-cover' src={image4} alt="Slide 4" /></SwiperSlide> */}
                 </Swiper>
             </div>

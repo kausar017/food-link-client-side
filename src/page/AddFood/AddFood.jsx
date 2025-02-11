@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provaider/AuthProvaider';
 
@@ -8,6 +8,11 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 
 const AddFood = () => {
+
+     useEffect(() => {
+            document.title = "Food Link | Add Food";
+        }, []);
+
     const axiosSecure = useAxiosSecure()
 
     const { isPending, mutateAsync } = useMutation({

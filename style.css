@@ -1,0 +1,5 @@
+.bacground{
+    background-image: url('./src/assets/bg/Sprinkle.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

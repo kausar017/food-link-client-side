@@ -3,10 +3,14 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provaider/AuthProvaider";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
-import bg from '../../assets/bg/Sprinkle.svg'
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyFoodUpdate = () => {
+    useEffect(() => {
+        document.title = "Food Link | Update";
+    }, []);
+
+
     const axiosSecure = useAxiosSecure()
 
     const navigat = useNavigate();
@@ -93,19 +97,9 @@ const MyFoodUpdate = () => {
     } = foodData;
 
     return (
-        <div className="py-[150px] px-2"
-            style={{
-                backgroundImage: `url(${bg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                // height: "100vh",
-                width: "100%",
+        <div className="py-[150px] px-2">
 
-            }}
-
-        >
-
-            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-2xl h-[800px] overflow-y-scroll mx-auto space-y-3 rounded-md dark:bg-gray-50 border-2 p-5 text-white backdrop-blur-xl shadow-xl">
+            <form onSubmit={handleUpdate} noValidate className="container w-full max-w-2xl h-[800px] overflow-y-scroll mx-auto space-y-3 rounded-md  border-2 p-5 text-white backdrop-blur-xl shadow-xl">
                 <div className="text-2xl font-bold text-center">
                     <h1>Update Food</h1>
                 </div>
@@ -116,7 +110,7 @@ const MyFoodUpdate = () => {
                         name="foodName"
                         defaultValue={foodName}
                         required
-                        className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -126,7 +120,7 @@ const MyFoodUpdate = () => {
                         name="foodImage"
                         defaultValue={foodImage}
                         required
-                        className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full border-2 text-black p-2 rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -134,7 +128,7 @@ const MyFoodUpdate = () => {
                     <input
                         defaultValue={foodId}
                         name="foodId"
-                        className="block w-full p-2 border-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100 text-black"
+                        className="block w-full p-2 border-2 rounded focus:outline-none focus:ring   text-black"
                     />
                 </div>
                 <div>
@@ -142,7 +136,7 @@ const MyFoodUpdate = () => {
                     <input
                         defaultValue={foodQuantity}
                         name="foodQuantity"
-                        className="block w-full p-2 border-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100 text-black"
+                        className="block w-full p-2 border-2 rounded focus:outline-none focus:ring   text-black"
                     />
                 </div>
                 <div>
@@ -152,7 +146,7 @@ const MyFoodUpdate = () => {
                         name="donatorEmail"
                         readOnly
                         defaultValue={donatorEmail}
-                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -161,7 +155,7 @@ const MyFoodUpdate = () => {
                         type="text"
                         name="donatorName"
                         defaultValue={donatorName}
-                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -171,7 +165,7 @@ const MyFoodUpdate = () => {
                         name="email"
                         readOnly
                         defaultValue={email}
-                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -180,7 +174,7 @@ const MyFoodUpdate = () => {
                         type="date"
                         name="formattedDate"
                         defaultValue={formattedDate}
-                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -189,7 +183,7 @@ const MyFoodUpdate = () => {
                         type="text"
                         name="pickupLocation"
                         defaultValue={pickupLocation}
-                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-2 border-2 text-black rounded focus:outline-none focus:ring  "
                     />
                 </div>
                 <div>
@@ -208,7 +202,7 @@ const MyFoodUpdate = () => {
 
                         name="notes"
                         defaultValue={notes}
-                        className="block w-full p-3 border-2 text-black rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:dark:ring-rose-600 dark:bg-gray-100"
+                        className="block w-full p-3 border-2 text-black rounded autoexpand focus:outline-none focus:ring  "
                     />
                 </div>
                 <div className="pt-6 flex justify-end space-x-4">

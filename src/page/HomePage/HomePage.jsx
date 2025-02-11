@@ -4,8 +4,14 @@ import FeaturedFoods from "../FeaturedFoods/FeaturedFoods";
 import Slaider from "../Slaider/Slaider";
 import AboutUs from "../AboutUs/AboutUs";
 import OurImpact from "../Our Impact/OurImpact";
+import Contact from "../Contact/Contact";
+import { useEffect } from "react";
 
 const HomePage = () => {
+
+     useEffect(() => {
+            document.title = "Food Link | Home";
+        }, []);
     return (
         <div>
             {/* carasol */}
@@ -18,6 +24,8 @@ const HomePage = () => {
             <OurImpact></OurImpact>
             {/* About Us */}
             <AboutUs></AboutUs>
+            {/* contact */}
+            <Contact></Contact>
         </div>
     );
 };

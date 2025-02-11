@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 
 const AboutUs = () => {
+ useEffect(() => {
+        document.title = "Food Link | About";
+    }, []);
+
     return (
-        <div>
-            <section className="about-us bg-green-100 py-10 border-t-4 border-black">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold text-center text-green-800 mb-8">About Us</h2>
+        <div className="">
+            <section className="  border-t-4 border-black flex flex-col justify-center items-center min-h-[640px]">
+                <div className="container mx-auto px-6  ">
+                    <h2 className="text-3xl font-bold text-center text-white mb-8">About Us</h2>
                     <div className="flex flex-col md:flex-row items-center gap-8">
                         {/* Image */}
                         <div className="md:w-1/2">
@@ -17,30 +22,30 @@ const AboutUs = () => {
 
                         {/* Text Content */}
                         <div className="md:w-1/2 text-gray-700">
-                            <h3 className="text-2xl font-semibold text-green-700 mb-4">
+                            <h3 className="text-2xl font-semibold text-white mb-4">
                                 Join Us in Fighting Hunger
                             </h3>
-                            <p className="mb-4">
+                            <p className="mb-4 text-white">
                                 At <strong>Food For All</strong>, our mission is to bridge the gap between food waste and hunger. Every day, countless people go hungry while edible food goes to waste. We aim to change this by creating a platform where food donors and recipients can connect.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-white">
                                 Whether you're an individual, restaurant, or organization, you can contribute by donating excess food to those in need. Together, we can create a community where no one has to sleep hungry.
                             </p>
                             <div className="flex justify-around text-center my-8">
                                 <div>
                                     <h3 className="text-3xl font-bold text-green-700">8,950+</h3>
-                                    <p>Meals Donated</p>
+                                    <p className=" text-white">Meals Donated</p>
                                 </div>
                                 <div>
                                     <h3 className="text-3xl font-bold text-green-700">4,250+</h3>
-                                    <p>Donors</p>
+                                    <p className=" text-white">Donors</p>
                                 </div>
                                 <div>
                                     <h3 className="text-3xl font-bold text-green-700">6,700+</h3>
-                                    <p>People Helped</p>
+                                    <p className=" text-white">People Helped</p>
                                 </div>
                             </div>
-                            <button className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+                            <button className="text-white px-6 py-2 rounded border hover:bg-white/20 hover:shadow-lg hover:shadow-blue-600">
                                 Learn More
                             </button>
                         </div>
